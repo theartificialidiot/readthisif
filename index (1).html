@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#fdfcf9" />
+    <title>Read This If // An Experiential Syllabus</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,800;1,600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <!-- Alpine.js for stable mobile data binding -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.5/dist/cdn.min.js"></script>
+    <style>
+        :root {
+            --bg: #fdfcf9;
+            --paper: #ffffff;
+            --ink: #111827;
+            --ink-soft: #4b5563;
+            --muted: #6b7280;
+            --line: #e7e5e0;
+            --primary: #0284c7;
+            --primary-soft: #e0f2fe;
+            --warm: #fff7ed;
+            --amber: #f59e0b;
+            --rose: #ef4444;
+
+            --c-connect: #2563eb;
+            --c-feel: #e11d48;
+            --c-escape: #7c3aed;
+            --c-know: #059669;
+            --c-reflect: #d97706;
+            --c-biblio: #db2777;
+        }
+
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        html, body { margin: 0; padding: 0; }
+        body {
+            background-color: var(--bg);
+            color: var(--ink);
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            font-size: 16px;
+            line-height: 1.55;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+        }
+        button { font-family: inherit; }
+        a { color: var(--primary); text-decoration: none; }
+
+        /* Grain overlay for depth */
+        body::before {
+            content: "";
+            position: fixed; inset: 0;
+            pointer-events: none;
+            opacity: 0.035;
+            z-index: 1;
+            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+        }
+
+        .container { max-width: 980px; margin: 0 auto; padding: 28px 20px 96px; position: relative; z-index: 2; }
+
+        /* Header */
+        .nav-header {
+            display: flex; align-items: baseline; justify-content: space-between;
+            padding: 8px 0 28px;
+            border-bottom: 1px solid var(--line);
+            margin-bottom: 36px;
+            gap: 16px;
+        }
+        .brand {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(28px, 6vw, 40px);
+            font-weight: 800;
+            margin: 0;
+            color: var(--ink);
+            letter-spacing: -1px;
+        }
+        .brand .slash { color: var(--primary); font-style: italic; font-weight: 600; }
+        .tagline {
+            font-size: 12px;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 2.5px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        /* Hero */
+        .hero-quote {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(22px, 4.5vw, 32px);
+            font-style: italic;
+            color: var(--ink);
+            line-height: 1.25;
+            margin: 12px 0 28px;
+            font-weight: 600;
+            max-width: 720px;
+        }
+        .hero-quote .accent { color: var(--primary); }
+
+        .essay {
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-left: 4px solid var(--primary);
+            padding: 28px;
+            border-radius: 14px;
+            margin-bottom: 18px;
+            box-shadow: 0 1px 2px rgba(17,24,39,0.03);
+        }
+        .essay p { margin: 0 0 14px; color: var(--ink-soft); font-size: 15.5px; line-height: 1.75; }
+        .essay p:last-child { margin-bottom: 0; }
+        .essay .lead { font-weight: 700; color: var(--ink); font-size: 17px; }
+        .essay .punch { font-weight: 700; color: var(--ink); }
+
+        /* Why You Need Reasons card */
+        .why-card {
+            position: relative;
+            background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);
+            border: 1px solid #fed7aa;
+            padding: 24px 28px;
+            border-radius: 14px;
+            margin-bottom: 44px;
+            box-shadow: 0 4px 14px rgba(217,119,6,0.08);
+        }
+        .why-card .why-tag {
+            display: inline-flex; align-items: center; gap: 8px;
+            font-size: 11px; font-weight: 800; letter-spacing: 2px;
+            text-transform: uppercase; color: #b45309; margin-bottom: 10px;
+        }
+        .why-card .why-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px; font-weight: 800; color: var(--ink);
+            margin: 0 0 10px; line-height: 1.2;
+        }
+        .why-card p { margin: 0 0 8px; color: #78350f; font-size: 14.5px; line-height: 1.7; }
+        .why-card p:last-of-type { margin-bottom: 0; }
+        .why-card .handle { color: var(--primary); font-weight: 700; }
+        .why-card .dismiss {
+            position: absolute; top: 12px; right: 12px;
+            background: rgba(255,255,255,0.7); border: 1px solid #fed7aa;
+            width: 30px; height: 30px; border-radius: 999px;
+            cursor: pointer; color: #b45309; font-size: 16px; font-weight: 700;
+            display: inline-flex; align-items: center; justify-content: center;
+            transition: background .15s ease, transform .15s ease;
+        }
+        .why-card .dismiss:hover { background: #fff; transform: scale(1.06); }
+
+        /* Section heading */
+        .section-eyebrow {
+            display: inline-block;
+            font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+            color: var(--primary); font-weight: 700; margin-bottom: 8px;
+        }
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(26px, 5vw, 36px);
+            font-weight: 800; margin: 0 0 24px; line-height: 1.15;
+            letter-spacing: -0.5px;
+        }
+
+        /* Shelf grid */
+        .shelf-grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 16px;
+        }
+        .shelf-card {
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-left: 8px solid var(--c-connect);
+            padding: 22px 22px 18px;
+            border-radius: 14px;
+            cursor: pointer;
+            transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+            display: flex; flex-direction: column; gap: 14px;
+            min-height: 130px;
+            box-shadow: 0 1px 2px rgba(17,24,39,0.03);
+        }
+        .shelf-card:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(17,24,39,0.07); }
+        .shelf-card:active { transform: scale(0.985); }
+        .shelf-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px; font-weight: 800; color: var(--ink);
+            line-height: 1.1; letter-spacing: -0.5px;
+        }
+        .shelf-meta {
+            display: flex; align-items: center; justify-content: space-between;
+            font-size: 13px; font-weight: 600; color: var(--muted);
+            margin-top: auto;
+        }
+        .shelf-arrow { font-weight: 700; color: var(--ink); transition: transform .2s ease; }
+        .shelf-card:hover .shelf-arrow { transform: translateX(4px); }
+
+        /* Book grid: strictly 2-column even on mobile */
+        .book-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 22px;
+            margin-top: 8px;
+        }
+        @media (min-width: 760px) {
+            .book-grid { grid-template-columns: repeat(3, 1fr); gap: 28px; }
+        }
+        .book-card {
+            background: var(--paper);
+            padding: 18px;
+            border-radius: 14px;
+            border: 1px solid var(--line);
+            display: flex; flex-direction: column;
+            transition: transform .18s ease, box-shadow .18s ease;
+            box-shadow: 0 1px 2px rgba(17,24,39,0.03);
+        }
+        .book-card:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(17,24,39,0.08); }
+        .reason-heading {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(16px, 3.4vw, 20px);
+            font-weight: 800; color: var(--ink);
+            line-height: 1.15; letter-spacing: -0.4px;
+            margin: 0 0 14px; min-height: 2.3em;
+        }
+        .svg-cover-wrap {
+            width: 100%; aspect-ratio: 2/3; border-radius: 8px;
+            overflow: hidden; cursor: pointer; margin-bottom: 14px;
+            box-shadow: 0 8px 18px rgba(17,24,39,0.18);
+            transition: transform .2s ease;
+            background: #111;
+        }
+        .svg-cover-wrap:hover { transform: scale(1.02); }
+        .svg-cover-wrap:active { transform: scale(0.98); }
+        .svg-cover-wrap svg { display: block; width: 100%; height: 100%; }
+        .book-meta { font-size: 12px; color: var(--muted); margin: 0 0 14px; line-height: 1.4; }
+        .book-meta strong { color: var(--ink); font-weight: 700; }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center;
+            gap: 8px; padding: 11px 18px; border-radius: 999px;
+            font-weight: 700; font-size: 13.5px; cursor: pointer;
+            border: 1px solid transparent; transition: transform .15s ease, background .15s ease, color .15s ease, border-color .15s ease;
+            letter-spacing: 0.2px;
+        }
+        .btn-main { background: var(--ink); color: #fff; width: 100%; }
+        .btn-main:hover { background: #000; }
+        .btn-main:active { transform: scale(0.98); }
+        .btn-ghost { background: var(--primary-soft); color: var(--primary); }
+        .btn-ghost:hover { background: #bae6fd; }
+        .btn-outline { background: transparent; color: var(--ink); border-color: var(--line); }
+        .btn-outline:hover { border-color: var(--ink); }
+        .btn-back {
+            background: transparent; color: var(--ink-soft);
+            padding: 8px 0; font-weight: 600; font-size: 14px;
+            border: none; cursor: pointer; display: inline-flex; align-items: center;
+            gap: 6px; margin-bottom: 20px;
+        }
+        .btn-back:hover { color: var(--primary); }
+
+        /* Detail / Remedy */
+        .biblio-panel {
+            background: var(--paper);
+            border: 1px solid var(--line);
+            padding: 32px;
+            border-radius: 18px;
+            box-shadow: 0 8px 30px rgba(17,24,39,0.06);
+        }
+        @media (max-width: 600px) { .biblio-panel { padding: 24px 20px; } }
+        .phase {
+            padding: 24px 0;
+            border-bottom: 1px dashed var(--line);
+        }
+        .phase:last-child { border-bottom: none; padding-bottom: 0; }
+        .phase:first-child { padding-top: 0; }
+        .phase-tag {
+            display: inline-flex; align-items: center; gap: 8px;
+            font-size: 11px; font-weight: 800; letter-spacing: 2.5px;
+            text-transform: uppercase; margin-bottom: 12px;
+        }
+        .phase-dot { width: 6px; height: 6px; border-radius: 999px; background: currentColor; }
+        .phase-need .phase-tag { color: var(--primary); }
+        .phase-dose .phase-tag { color: var(--rose); }
+        .phase-bridge .phase-tag { color: var(--amber); }
+        .need-heading {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(26px, 5vw, 34px);
+            font-weight: 800; margin: 0 0 10px; line-height: 1.15;
+            letter-spacing: -0.6px;
+        }
+        .book-found {
+            font-size: 14px; color: var(--muted); margin: 0;
+        }
+        .book-found strong { color: var(--ink); font-weight: 700; }
+        .quote-box {
+            background: #f8fafc;
+            border-left: 4px solid var(--primary);
+            padding: 22px 24px;
+            border-radius: 0 12px 12px 0;
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(17px, 3.5vw, 21px);
+            font-style: italic;
+            color: #1f2937;
+            line-height: 1.55;
+            margin: 6px 0 0;
+        }
+        .analysis-box {
+            background: #fffbeb;
+            border: 1px solid #fde68a;
+            padding: 22px 24px;
+            border-radius: 12px;
+            color: var(--ink);
+            font-size: 15.5px;
+            line-height: 1.75;
+            margin-top: 6px;
+        }
+
+        .share-row {
+            display: flex; gap: 10px; margin-top: 28px;
+            flex-wrap: wrap;
+        }
+        .share-row .btn { flex: 1; min-width: 140px; }
+
+        /* Modal: Share preview */
+        .modal-backdrop {
+            position: fixed; inset: 0;
+            background: rgba(15,23,42,0.65);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            z-index: 100;
+            display: flex; align-items: center; justify-content: center;
+            padding: 16px;
+        }
+        .modal-card {
+            background: var(--paper);
+            border-radius: 18px;
+            padding: 22px;
+            max-width: 460px; width: 100%;
+            box-shadow: 0 24px 60px rgba(0,0,0,0.3);
+            max-height: 92vh; overflow-y: auto;
+        }
+        .modal-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px; font-weight: 800;
+            margin: 0 0 4px;
+        }
+        .modal-card p.modal-sub { color: var(--muted); font-size: 13px; margin: 0 0 16px; }
+        .preview-canvas {
+            width: 100%; aspect-ratio: 1/1;
+            border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+            display: block; background: #111;
+        }
+        .modal-actions { display: flex; gap: 10px; margin-top: 16px; }
+        .modal-actions .btn { flex: 1; }
+        .modal-close {
+            position: absolute; top: 14px; right: 14px;
+            background: rgba(255,255,255,0.95); border: 1px solid var(--line);
+            width: 32px; height: 32px; border-radius: 999px;
+            cursor: pointer; font-size: 18px; font-weight: 700;
+            display: inline-flex; align-items: center; justify-content: center;
+        }
+        .modal-wrap { position: relative; }
+
+        /* Reveal animation */
+        @keyframes rise {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .rise { animation: rise .42s ease both; }
+        .rise-stagger > * { animation: rise .5s ease both; }
+        .rise-stagger > *:nth-child(1) { animation-delay: 0.02s; }
+        .rise-stagger > *:nth-child(2) { animation-delay: 0.08s; }
+        .rise-stagger > *:nth-child(3) { animation-delay: 0.14s; }
+        .rise-stagger > *:nth-child(4) { animation-delay: 0.20s; }
+        .rise-stagger > *:nth-child(5) { animation-delay: 0.26s; }
+        .rise-stagger > *:nth-child(6) { animation-delay: 0.32s; }
+
+        /* Selection */
+        ::selection { background: #fef08a; color: var(--ink); }
+
+        /* Footer */
+        .foot {
+            margin-top: 60px;
+            padding-top: 24px;
+            border-top: 1px solid var(--line);
+            color: var(--muted);
+            font-size: 12.5px;
+            display: flex; justify-content: space-between; gap: 12px;
+            flex-wrap: wrap;
+        }
+        .foot a { color: var(--primary); font-weight: 600; }
+
+        @media (max-width: 480px) {
+            .container { padding: 22px 16px 80px; }
+            .nav-header { padding: 4px 0 22px; margin-bottom: 28px; }
+            .essay { padding: 22px; }
+            .why-card { padding: 22px 22px 22px; }
+            .biblio-panel { padding: 22px 18px; }
+        }
+    </style>
+</head>
+<body x-data="libraryApp()" x-cloak>
+
+    <div class="container">
+
+        <header class="nav-header">
+            <h1 class="brand" data-testid="brand-title">Read This If <span class="slash">//</span></h1>
+            <span class="tagline" data-testid="brand-tagline">An Experiential Syllabus</span>
+        </header>
+
+        <!-- VIEW 1: HOME DASHBOARD -->
+        <main x-show="view === 'home'" x-transition.opacity data-testid="view-home">
+            <div class="rise">
+                <div class="hero-quote" data-testid="hero-quote">
+                    "Everything in life reminds me of <span class="accent">a book I once read</span>. Shouldn't it be the other way around?"
+                </div>
+                <div class="essay" data-testid="hero-essay">
+                    <p class="lead">"How do I read more? How do I start reading? How do you find so much time to read?"</p>
+                    <p>I get asked questions like this very often. Generally, I tell them about my '3 parallel books' strategy, or talk about my love for the written word, or perhaps even point to the needs of my career as a researcher and educator. However, none of these answers are true — though they are all factually accurate.</p>
+                    <p>Reading is a pleasurable activity, definitely an illuminating one, and often even a desirable one. But reading is rarely done for its own sake.</p>
+                    <p class="punch">We read to fulfill a need. Here is how books have helped me cope with life.</p>
+                </div>
+            </div>
+
+            <!-- Why You Need Reasons (dismissible) -->
+            <div class="why-card rise" x-show="showWhyCard" x-transition data-testid="why-card">
+                <button class="dismiss" @click="dismissWhyCard()" data-testid="why-dismiss" aria-label="Dismiss">×</button>
+                <div class="why-tag">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21h6"/><path d="M12 17v4"/><path d="M12 3a6 6 0 0 0-4 10.5c1 .9 1.5 2 1.5 3.5h5c0-1.5.5-2.6 1.5-3.5A6 6 0 0 0 12 3z"/></svg>
+                    Why You Need Reasons To Read
+                </div>
+                <p class="why-title">A habit is easier to keep when it has a purpose.</p>
+                <p>We can easily pick up habits that are instantly rewarding, fun, and socially hip. Reading is rarely instant. So if you're keen on making reading a habit — snag books that <em>speak to your needs</em>, are well loved, and are an absolute joy to dive into.</p>
+                <p>Join our <span class="handle">Read This</span> book club to find good books to read and talk about — <span class="handle">@artificialidiot</span></p>
+            </div>
+
+            <div class="rise">
+                <span class="section-eyebrow">The Library</span>
+                <h2 class="section-title">Six shelves. <span x-text="totalBooks"></span> remedies.</h2>
+            </div>
+
+            <div class="shelf-grid rise-stagger" data-testid="shelf-grid">
+                <template x-for="shelf in shelves" :key="shelf.name">
+                    <div class="shelf-card"
+                         :style="`border-left-color: ${shelf.color}`"
+                         @click="selectShelf(shelf.name)"
+                         :data-testid="`shelf-card-${shelf.slug}`">
+                        <div>
+                            <div class="shelf-title" x-text="shelf.name"></div>
+                            <div style="font-size: 13.5px; color: var(--muted); margin-top: 8px; line-height: 1.45;" x-text="shelf.tagline"></div>
+                        </div>
+                        <div class="shelf-meta">
+                            <span x-text="getBooks(shelf.name).length + ' remedies'"></span>
+                            <span class="shelf-arrow" :style="`color: ${shelf.color}`">→</span>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </main>
+
+        <!-- VIEW 2: BOOK GRID -->
+        <section x-show="view === 'grid'" x-transition.opacity style="display: none;" data-testid="view-grid">
+            <button class="btn-back" @click="goHome()" data-testid="back-to-library">← Back to Library</button>
+            <div class="rise">
+                <span class="section-eyebrow" :style="`color: ${activeShelfColor}`" x-text="'Shelf'"></span>
+                <h2 class="section-title" x-text="activeShelf" data-testid="active-shelf-title"></h2>
+                <p style="color: var(--muted); margin: -12px 0 28px; font-size: 14.5px; max-width: 640px;" x-text="activeShelfTagline"></p>
+            </div>
+
+            <div class="book-grid rise-stagger" data-testid="book-grid">
+                <template x-for="b in getBooks(activeShelf)" :key="b.t + '-' + b.a">
+                    <article class="book-card">
+                        <h3 class="reason-heading" x-text="b.th"></h3>
+                        <div class="svg-cover-wrap" @click="openBook(b)" x-html="renderCover(b)" :data-testid="`cover-${slug(b.t)}`"></div>
+                        <p class="book-meta">
+                            <strong x-text="b.t"></strong><br/>
+                            <span x-text="'by ' + b.a"></span>
+                        </p>
+                        <button class="btn btn-main" @click="openBook(b)" :data-testid="`open-book-${slug(b.t)}`">Read the Remedy</button>
+                    </article>
+                </template>
+            </div>
+        </section>
+
+        <!-- VIEW 3: DETAIL / REMEDY -->
+        <section x-show="view === 'detail'" x-transition.opacity style="display: none;" data-testid="view-detail">
+            <button class="btn-back" @click="view = 'grid'" data-testid="back-to-grid">← Back to <span x-text="activeShelf"></span></button>
+
+            <div class="biblio-panel rise" x-show="activeBook">
+                <div class="phase phase-need">
+                    <div class="phase-tag"><span class="phase-dot"></span> Phase 01 // The Need</div>
+                    <h2 class="need-heading" x-text="activeBook?.th" data-testid="detail-reason"></h2>
+                    <p class="book-found">
+                        Found in: <strong x-text="activeBook?.t"></strong> by <span x-text="activeBook?.a"></span>
+                    </p>
+                </div>
+
+                <div class="phase phase-dose">
+                    <div class="phase-tag"><span class="phase-dot"></span> Phase 02 // The Micro-Dose</div>
+                    <div class="quote-box" data-testid="detail-quote">
+                        <span x-text="'“' + (activeBook?.ex || '') + '”'"></span>
+                    </div>
+                </div>
+
+                <div class="phase phase-bridge">
+                    <div class="phase-tag"><span class="phase-dot"></span> Phase 03 // Why it changes you</div>
+                    <div class="analysis-box" x-text="activeBook?.br" data-testid="detail-bridge"></div>
+                </div>
+
+                <div class="share-row">
+                    <button class="btn btn-ghost" @click="openShare()" data-testid="open-share">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+                        Create Insta-Ready Card
+                    </button>
+                    <button class="btn btn-outline" @click="view = 'grid'" data-testid="next-remedy">More from this shelf →</button>
+                </div>
+            </div>
+        </section>
+
+        <footer class="foot">
+            <span>Curated by <a href="#">@artificialidiot</a></span>
+            <span>Read This If // <span x-text="totalBooks + ' remedies'"></span></span>
+        </footer>
+    </div>
+
+    <!-- SHARE MODAL -->
+    <div class="modal-backdrop" x-show="shareOpen" x-transition.opacity @click.self="closeShare()" style="display: none;" data-testid="share-modal">
+        <div class="modal-wrap">
+            <div class="modal-card">
+                <button class="modal-close" @click="closeShare()" data-testid="share-close" aria-label="Close">×</button>
+                <h3>Share this remedy</h3>
+                <p class="modal-sub">A 1:1 image ready for Instagram, Stories, or sharing with a friend.</p>
+                <canvas class="preview-canvas" x-ref="shareCanvas" width="1080" height="1080" data-testid="share-canvas"></canvas>
+                <div class="modal-actions">
+                    <button class="btn btn-main" @click="downloadShare()" data-testid="share-download">Download</button>
+                    <button class="btn btn-outline" @click="closeShare()" data-testid="share-close-2">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>[x-cloak]{display:none!important}</style>
+
+    <script>
+        function libraryApp() {
+            // S = Shelf names by index
+            const S = ["To Connect", "To Feel", "To Escape", "To Know", "To Reflect", "Bibliotherapy"];
+
+            // Compressed format: [shelfIdx, title, author, theme/reason, excerpt, bridge, bgColor, accentColor, svgShape]
+            const rawData = [
+                // TO CONNECT (0) — original content restored verbatim
+                [0, "The Midnight Library", "Matt Haig", "Need to cope with suicidal thoughts", "Between life and death there is a library. Every book provides a chance to try another life you could have lived.", "Creates a visceral sandbox map of the multiverse, proving that the configuration of your life is less important than your choice to experience it.", "#1e1b4b", "#a855f7", "<rect x='-20' y='-30' width='40' height='60' rx='4'/>"],
+                [0, "How Not to Kill Yourself", "Clancy Martin", "Need to cope with suicidal thoughts", "I needed someone to tell me that it was okay to be broken, and that I didn't have to fix it all today.", "A radically honest, non-clinical memoir that de-stigmatizes severe ideation and offers literal survival tools for the mind.", "#020617", "#eab308", "<circle cx='0' cy='0' r='30' stroke-dasharray='4 4'/>"],
+                [0, "Em and the Big Hoom", "Jerry Pinto", "Need to cope with the demands of parenting", "When Em was active, she filled the room with bright, erratic electricity.", "Set inside a middle-class household, this brilliant book offers robust language to map the realities of mental health crises and chaotic family demands.", "#450a0a", "#f87171", "<path d='M-20,20 L0,-20 L20,20 Z'/>"],
+                [0, "Eleanor Oliphant is Completely Fine", "Gail Honeyman", "Need to cope with childhood trauma", "If someone asks you how you are, you are meant to say FINE. You are not meant to say that you cried yourself to sleep.", "A masterclass in understanding the isolating scars of trauma, showing that healing starts with the terrifying act of letting someone in.", "#0f172a", "#38bdf8", "<circle cx='0' cy='0' r='30'/>"],
+                [0, "Oranges Are Not the Only Fruit", "Jeanette Winterson", "Need to cope with childhood trauma", "People do go back, but they don't survive, because two realities are claiming them at the same time.", "A survival guide for those raised in deeply dogmatic environments, proving that constructing your own narrative is ultimate defiance.", "#422006", "#fb923c", "<circle cx='0' cy='0' r='25'/>"],
+                [0, "Why Be Happy When You Could Be Normal?", "Jeanette Winterson", "Need to cope with childhood trauma", "I had to find an escape. I found it in books.", "A stunning autobiographical testament to the protective utility of books as a direct survival mechanism against structural abuse.", "#2e1065", "#d8b4fe", "<path d='M-20,0 L20,0 M0,-20 L0,20' stroke-width='6'/>"],
+                [0, "Nothing to See Here", "Kevin Wilson", "Need to cope with the demands of parenting", "The children burst into literal flames when they get emotional.", "A beautifully weird and gentle story that functions as a stunning allegory for parenting atypical children.", "#172554", "#fde047", "<polygon points='0,-30 -20,20 20,20'/>"],
+                [0, "Coraline", "Neil Gaiman", "Need to cope with the demands of parenting", "Fairy tales are more than true: not because they tell us that dragons exist, but because they tell us that dragons can be beaten.", "A dark, whimsical reflection on the expectations between children and parents.", "#111827", "#34d399", "<circle cx='0' cy='0' r='10' stroke-width='8'/>"],
+                [0, "Anxious People", "Fredrik Backman", "Need to cope with the demands of everyday life", "This is a story about a bank robbery... But most of all, it's a story about idiots. Doing the best they can.", "Backman weaves a relatable situational comedy that acts as a profound meditation on empathy—reminding us we are all terrified.", "#1e293b", "#f43f5e", "<circle cx='0' cy='0' r='40'/>"],
+
+                // TO FEEL (1) — original content restored verbatim
+                [1, "7 Brief Lessons on Physics", "Carlo Rovelli", "Need to experience the poetry in physics", "Here, on the edge of what we know, shines the mystery and the beauty of the world.", "Bypasses dense mathematics to give your spirit direct contact with the elegance of our cosmos.", "#020617", "#a78bfa", "<circle cx='0' cy='0' r='30' stroke-dasharray='4 4'/>"],
+                [1, "Surely You're Joking, Mr. Feynman!", "Richard Feynman", "Need to feel the fun in doing science", "I don't know anything, but I do know that everything is interesting if you go into it deeply enough.", "Proves that high-level science isn't just rigid formulas; it's an act of rebellious, joyous play.", "#7f1d1d", "#fde047", "<path d='M-30,20 Q0,-40 30,20 T-30,20' fill='none' stroke-width='4'/>"],
+                [1, "Curious Minds", "John Brockman", "Need to feel the fun in doing science", "Childhood and often completely childish curiosities ultimately formed them into prominent scientists.", "Demonstrates that scientific genius is born from protecting a child's raw sense of play.", "#14532d", "#86efac", "<circle cx='0' cy='0' r='20'/>"],
+                [1, "An Appetite for Wonder", "Richard Dawkins", "Need to feel the fun in doing science", "The feeling of awed wonder that science can give us is one of the highest experiences of which the human psyche is capable.", "A biographical look at the raw passion and awe required to commit one's life to understanding reality.", "#064e3b", "#a3e635", "<line x1='-20' y1='-20' x2='20' y2='20' stroke-width='8'/>"],
+                [1, "The Dresden Files", "Jim Butcher", "Need an adrenaline boost", "The building was on fire, and it wasn't my fault.", "A pure adrenaline injection. A brilliant blend of hardboiled noir detective fiction seamlessly layered with deep urban magic.", "#171717", "#ef4444", "<path d='M-20,30 L0,-30 20,30 Z'/>"],
+                [1, "The Captain", "Will Wight", "Need an adrenaline boost", "If you're going to shoot a god, you better not miss.", "Fast-paced sci-fi progression fantasy that focuses purely on high-stakes kinetic momentum and fun.", "#0f172a", "#fb923c", "<polygon points='-20,-20 20,-20 0,30'/>"],
+                [1, "Mitch Rapp Series", "Vince Flynn", "Need an adrenaline boost", "He was the tip of the spear, the man they sent in when everything else failed.", "A political thriller machine designed to keep your pulse high and the pages turning.", "#1c1917", "#f87171", "<path d='M-10,-30 L10,-30 L0,30 Z'/>"],
+                [1, "Furiously Happy", "Jenny Lawson", "Need to laugh (and cry) at my mental health", "Being 'furiously happy' is an excuse to invite a herd of kangaroos over to your house.", "A radically honest approach to surviving severe depression and anxiety, replacing clinical shame with defiant joy.", "#064e3b", "#34d399", "<circle cx='-15' cy='-10' r='8'/><circle cx='15' cy='-10' r='8'/>"],
+                [1, "Aristotle and Dante Discover the Universe", "B.A. Sáenz", "Need a good cry", "I bet you could sometimes find all the mysteries of the universe in someone's hand.", "A tender, emotional exploration of identity and love that breaks down the walls of toxic masculinity.", "#1e3a8a", "#93c5fd", "<circle cx='0' cy='0' r='30'/>"],
+                [1, "The Man Called Ove", "Fredrik Backman", "Need a good cry", "Death is a strange thing. People live their whole lives as if it does not exist.", "A masterclass in peeling back the layers of human grief, showing how an isolated life can be thawed by community.", "#27272a", "#60a5fa", "<rect x='-20' y='-20' width='40' height='40' rx='4'/>"],
+                [1, "My Sister's Keeper", "Jodi Picoult", "Need a good cry", "You don't love someone because they're perfect, you love them in spite of the fact that they're not.", "A morally complex, devastating family drama designed to wring every tear from your eyes.", "#4c0519", "#fbcfe8", "<path d='M-20,-20 L20,20 M-20,20 L20,-20' stroke-width='4'/>"],
+
+                // TO ESCAPE (2) — original content restored verbatim
+                [2, "Hitchhiker's Guide to the Galaxy", "Douglas Adams", "Need a distraction from a chaotic world", "Space is big. You just won't believe how vastly, hugely, mind-bogglingly big it is.", "Adams offers a profound coping mechanism: laughing at the sheer absurdity of it all.", "#020617", "#a3e635", "<circle cx='0' cy='0' r='30'/>"],
+                [2, "Alice in Wonderland", "Lewis Carroll", "Need a distraction from a chaotic world", "We're all mad here. I'm mad. You're mad.", "The ultimate surrealist escape, forcing you to abandon logic and surrender to nonsense.", "#2e1065", "#f472b6", "<path d='M0,-20 L20,20 L-20,20 Z'/>"],
+                [2, "The Lord of the Rings", "J.R.R. Tolkien", "Need to escape into a more interesting universe", "Not all those who wander are lost.", "The definitive blueprint for world-building. It provides a sprawling reality where absolute good and evil exist.", "#3f2c14", "#fcd34d", "<circle cx='0' cy='0' r='40' stroke-width='6'/>"],
+                [2, "The Wheel of Time", "Robert Jordan", "Need to escape into a more interesting universe", "The Wheel of Time turns, and Ages come and pass, leaving memories that become legend.", "An impossibly deep, sprawling epic fantasy that you can live inside for months.", "#1e1b4b", "#38bdf8", "<circle cx='0' cy='0' r='25' stroke-dasharray='4 8' stroke-width='8'/>"],
+                [2, "Discworld", "Terry Pratchett", "Need to escape into a more interesting universe", "It is said that your life flashes before your eyes just before you die. That is true, it's called Life.", "A satirical mirror to our own world, disguised as a flat planet on the back of four elephants.", "#172554", "#fbbf24", "<rect x='-30' y='-10' width='60' height='20' rx='10'/>"],
+                [2, "The Sandman", "Neil Gaiman", "Need to escape into a more interesting universe", "Things need not have happened to be true. Tales and dreams are the shadow-truths that will endure.", "A visual and literary masterpiece weaving mythology, history, and the power of storytelling.", "#000000", "#9ca3af", "<path d='M-20,-20 Q0,-40 20,-20 T20,20 Q0,40 -20,20 T-20,-20'/>"],
+                [2, "Neverwhere", "Neil Gaiman", "Need to escape into a more interesting universe", "There are two Londons. There's London Above... and then there's London Below.", "Transforms urban mundanity into a dark, magical hidden reality just below the pavement.", "#1c1917", "#a8a29e", "<line x1='-30' y1='0' x2='30' y2='0' stroke-width='10'/>"],
+                [2, "House in the Cerulean Sea", "TJ Klune", "Need a hug in book form", "Don't you wish you were here?", "A deeply validating emotional escape valve that champions community connection over corporate paperwork.", "#0c4a6e", "#38bdf8", "<path d='M-30,10 Q0,-30 30,10 T-30,10' fill='#38bdf8' opacity='0.4' stroke='none'/>"],
+                [2, "Long Way to a Small, Angry Planet", "Becky Chambers", "Need a hug in book form", "All you can do is just be kind.", "A cozy, character-driven sci-fi novel about found family on a cramped spaceship.", "#1e293b", "#c084fc", "<circle cx='0' cy='0' r='20'/><circle cx='0' cy='0' r='30' stroke-dasharray='2 4'/>"],
+                [2, "Psalm for the Wild-Built", "Becky Chambers", "Need a hug in book form", "What do humans need?", "A utopian solarpunk escape that investigates mindfulness, artificial consciousness, and what it takes to truly rest.", "#14532d", "#86efac", "<circle cx='0' cy='0' r='25'/>"],
+                [2, "Fangirl", "Rainbow Rowell", "Need a quirky but memorable love story", "To really be a nerd, she'd decided, you had to prefer fictional worlds to the real one.", "A comforting exploration of finding love while navigating severe social anxiety and fandom life.", "#831843", "#f472b6", "<path d='M0,20 C-30,-10 -10,-40 0,-20 C10,-40 30,-10 0,20' fill='#f472b6' stroke='none'/>"],
+                [2, "Carry On", "Rainbow Rowell", "Need a quirky but memorable love story", "I love you. I'm completely, head-over-heels, tragically in love with you.", "A magical academy trope flipped upside down into a witty, chaotic queer romance.", "#312e81", "#fbbf24", "<path d='M-20,-20 L20,20 M-20,20 L20,-20' stroke-width='4'/>"],
+                [2, "Less", "Andrew Sean Greer", "Need a quirky but memorable love story", "He kisses how you would kiss someone if you were not afraid.", "A Pulitzer-winning comedic romp around the globe to avoid attending an ex's wedding.", "#7f1d1d", "#fca5a5", "<circle cx='0' cy='0' r='20' fill='none' stroke-width='4'/>"],
+                [2, "Swordheart", "T. Kingfisher", "Need a quirky but memorable love story", "I am a sword. I stab things. It's a living.", "A brilliantly funny fantasy romance featuring practical heroes and talking enchanted weapons.", "#1f2937", "#94a3b8", "<line x1='0' y1='-30' x2='0' y2='30' stroke-width='6'/>"],
+                [2, "Paladin's Grace", "T. Kingfisher", "Need a quirky but memorable love story", "He was a berserker of a dead god, and she made perfumes.", "A cozy, deeply respectful romance wrapped inside a gripping fantasy mystery.", "#3b0764", "#d8b4fe", "<rect x='-15' y='-15' width='30' height='30' rx='4'/>"],
+                [2, "Several People Are Typing", "Calvin Kasulke", "Need relatable but slightly mad office adventures", "I have uploaded my consciousness into Slack. I am no longer a man; I am an employee.", "A surreal, hilarious critique of modern remote work culture.", "#1e293b", "#e2e8f0", "<rect x='-30' y='-20' width='60' height='40' rx='4'/>"],
+                [2, "Fred, the Vampire Accountant", "Drew Hayes", "Need relatable but slightly mad office adventures", "Being undead is no excuse for being unprofessional.", "A delightful subversion of monster tropes where the vampire protagonist just wants to do taxes.", "#0f172a", "#991b1b", "<polygon points='0,20 -15,-20 15,-20'/>"],
+                [2, "The Wizard's Butler", "Nathan Lowell", "Need relatable but slightly mad office adventures", "Magic is mostly just a matter of proper logistics and a good cup of tea.", "A low-stakes, highly comforting novel about managing the estate of an eccentric wizard.", "#422006", "#fef08a", "<rect x='-20' y='-10' width='40' height='20' rx='2'/>"],
+
+                // TO KNOW (3) — original content restored verbatim
+                [3, "Quantum", "Manjit Kumar", "Need to know why scientists do what they do", "The universe is not only queerer than we suppose, but queerer than we can suppose.", "A dramatic history of the intense rivalries and debates that birthed quantum mechanics.", "#020617", "#60a5fa", "<circle cx='0' cy='0' r='20'/><circle cx='0' cy='0' r='35' stroke-dasharray='2 8'/>"],
+                [3, "Chaos", "James Gleick", "Need to know why scientists do what they do", "Where chaos begins, classical science stops.", "Reveals the passion behind paradigm shifts, showing how rogue scientists rewrote the rules of physics.", "#450a0a", "#fb923c", "<path d='M-30,-20 C-10,40 10,-40 30,20' stroke-width='4'/>"],
+                [3, "The Information", "James Gleick", "Need to know why scientists do what they do", "Information is the blood and the fuel, the vital principle.", "A sweeping history of how humanity learned to encode, transmit, and hoard information.", "#1e293b", "#38bdf8", "<rect x='-20' y='-20' width='10' height='40'/><rect x='10' y='-20' width='10' height='40'/>"],
+                [3, "Genius", "James Gleick", "Need to know why scientists do what they do", "He was a second-rate drummer, but a first-rate genius.", "A biography of Richard Feynman that demystifies the chaotic, brilliant nature of true intellect.", "#4c1d95", "#f472b6", "<polygon points='0,-30 -20,20 20,20'/>"],
+                [3, "We Are All Stardust", "Stefan Klein", "Need to know why scientists do what they do", "The molecules in our bodies were forged in the hearts of dying stars.", "Intimate interviews with leading scientists exploring their personal motivations and philosophies.", "#09090b", "#fef08a", "<circle cx='0' cy='0' r='3' fill='#fef08a'/><circle cx='-15' cy='-15' r='2' fill='#fef08a'/>"],
+                [3, "Figuring", "Maria Popova", "Need to know why scientists do what they do", "There are infinitely many kinds of beautiful lives.", "A lyrical mapping of the connections between science, art, and love across centuries.", "#3f2c14", "#fbbf24", "<circle cx='0' cy='0' r='30' stroke-dasharray='4 4'/>"],
+                [3, "Brief Candle in the Dark", "Richard Dawkins", "Need to know how scientists think", "Science is the poetry of reality.", "A memoir detailing the meticulous, evidence-based thought processes behind evolutionary science.", "#111827", "#a3e635", "<line x1='0' y1='-20' x2='0' y2='20' stroke-width='8'/>"],
+                [3, "The Undoing Project", "Michael Lewis", "Need to know how scientists think", "Man is a deterministic device thrown into a probabilistic universe.", "An intimate look at the brilliant, collaborative, and deeply flawed minds that created behavioral economics.", "#0f172a", "#38bdf8", "<circle cx='-10' cy='0' r='20'/><circle cx='10' cy='0' r='20' stroke-dasharray='4 4'/>"],
+                [3, "On the Move", "Oliver Sacks", "Need to know how scientists think", "I am a storyteller, for better and for worse.", "The restless, motorcycle-riding life of a neurologist who saw profound humanity in clinical patients.", "#312e81", "#e0e7ff", "<path d='M-20,20 L20,-20' stroke-width='4'/>"],
+                [3, "Fundamental", "Tim James", "Need to know how scientists think", "Quantum physics is not just strange; it is stranger than you can possibly imagine.", "A humorous, accessible breakdown of the subatomic world and the people who study it.", "#831843", "#fca5a5", "<circle cx='0' cy='0' r='15'/><circle cx='0' cy='0' r='30' stroke-width='1'/>"],
+                [3, "Thinking, Fast and Slow", "Daniel Kahneman", "Need to understand how the human mind works", "A reliable way to make people believe in falsehoods is frequent repetition.", "The definitive manual for the human brain. It equips you with the cognitive framework to catch your own mind.", "#312e81", "#818cf8", "<path d='M-20,0 L0,-30 L20,0 L0,30 Z'/>"],
+                [3, "Stumbling on Happiness", "Daniel Gilbert", "Need to understand how the human mind works", "We spend our lives striving for milestones that our minds fundamentally miscalculate.", "Utilizes experimental psychology to deliver a striking lesson in expectation management.", "#14532d", "#4ade80", "<rect x='-20' y='-20' width='40' height='40' rx='20' fill='#4ade80' opacity='0.5' stroke='none'/>"],
+                [3, "Rationality", "Steven Pinker", "Need to understand how the human mind works", "Reason is the defining characteristic of human nature.", "A guide to logic and critical thinking in an era of fake news and cognitive biases.", "#1c1917", "#d6d3d1", "<rect x='-20' y='-20' width='40' height='40'/>"],
+                [3, "The Believing Brain", "Michael Shermer", "Need to understand how the human mind works", "We form beliefs for subjective reasons, then justify them with empirical reasons.", "Explains why our brains are hardwired to find patterns and construct conspiracy theories.", "#450a0a", "#f87171", "<circle cx='0' cy='0' r='20'/><line x1='-10' y1='0' x2='10' y2='0'/>"],
+                [3, "The Experience Machine", "Andy Clark", "Need to understand how the human mind works", "The brain is not a passive receiver, but a proactive prediction engine.", "Introduces 'predictive processing', showing how our brain hallucinates our conscious reality.", "#0f172a", "#a78bfa", "<circle cx='0' cy='0' r='25' stroke-dasharray='2 4'/>"],
+
+                // TO REFLECT (4) — original content restored verbatim
+                [4, "Until the End of Time", "Brian Greene", "Need a deep dive in science", "We are ephemeral, but our capacity to understand the universe is profound.", "A poetic journey from the Big Bang to the heat death of the universe.", "#020617", "#94a3b8", "<circle cx='0' cy='0' r='30' stroke-width='1'/>"],
+                [4, "The Order of Time", "Carlo Rovelli", "Need a deep dive in science", "The difference between past and future does not exist in the elementary equations of the world.", "Dismantles anxiety about time by changing how you perceive your place within quantum gravity.", "#312e81", "#a78bfa", "<circle cx='0' cy='0' r='45' stroke-dasharray='8 8'/>"],
+                [4, "What We Cannot Know", "Marcus du Sautoy", "Need a deep dive in science", "There are frontiers of modern science that seem mathematically impossible to ever truly know.", "A masterclass in intellectual humility, finding beauty in permanent, unresolvable mysteries.", "#064e3b", "#34d399", "<polygon points='0,-30 -25,15 25,15'/>"],
+                [4, "The Sixth Extinction", "Elizabeth Kolbert", "Need a deep dive in science", "It's not clear that man ever really lived in harmony with nature.", "A sobering look at humanity's true impact on the planet, appreciating the fragility of ecosystems.", "#422006", "#fb923c", "<path d='M-30,20 L-10,-20 L10,0 L30,-10' fill='none' stroke-width='4'/>"],
+                [4, "Brief History of Intelligence", "Max Bennett", "Need to reflect on the nature of AI", "Intelligence is not a single algorithm, but an evolutionary stack of breakthroughs.", "Traces the evolution of brains to understand what modern AI is actually mimicking.", "#172554", "#60a5fa", "<rect x='-15' y='-25' width='30' height='50' rx='4'/>"],
+                [4, "Possible Minds", "John Brockman", "Need to reflect on the nature of AI", "Can machines be intelligent without any emotions?", "A multifaceted exploration of AI, navigating past sci-fi panic to philosophical implications.", "#171717", "#a8a29e", "<rect x='-20' y='-20' width='40' height='40' rx='4'/>"],
+                [4, "River of Consciousness", "Oliver Sacks", "Need to reflect on the nature of consciousness", "Seeing with the brain is often called imagination.", "Bridges biology, botany, and neurology to instill a deep sense of wonder about being alive.", "#2e1065", "#c084fc", "<path d='M-30,0 Q-15,-20 0,0 T30,0' stroke-width='4' fill='none'/>"],
+                [4, "God, Human, Animal, Machine", "Meghan O'Gieblyn", "Need to reflect on the nature of consciousness", "We have merely transferred our theological desires onto silicon.", "Examines how the metaphors we use for technology are deeply rooted in religious longing.", "#4a044e", "#f472b6", "<circle cx='0' cy='0' r='20'/><line x1='0' y1='-30' x2='0' y2='30'/>"],
+
+                // BIBLIOTHERAPY (5) — elaborated descriptions sourced from The Novel Cure
+                [5, "The Master and Margarita", "Mikhail Bulgakov", "Being a goody-goody", "The devil's whimsical interactions in 1930s Moscow challenge conventional morality.", "Bulgakov unleashes Satan and a vodka-drinking, talking cat on the prim, repressed Moscow of the Soviet 1930s, leaving moral certainty in glorious shambles. The novel is a celebration of mischief, irreverence, and the kind of joy that's only accessible when you stop trying to be morally spotless. Read this when you suspect that virtue has quietly turned you into a bore. (Source: The Novel Cure)", "#1f2937", "#f43f5e", "<circle cx='0' cy='0' r='25' stroke-dasharray='4 4'/><path d='M-10,-10 L10,10 M-10,10 L10,-10'/>"],
+                [5, "Hitchhiker's Guide to the Galaxy", "Douglas Adams", "Unable to find a cup of tea", "Arthur Dent's demanding need for tea amidst cosmic chaos captures the quintessential need for comfort.", "Arthur Dent's increasingly desperate quest for a proper cup of tea — even after his planet is demolished — gives perfect comic dignity to small, civilized cravings in the face of overwhelming chaos. Adams reminds you that some comforts are universal, sacred, and worth the absurd effort. The best cure for not finding tea, it turns out, is to laugh about it. (Source: The Novel Cure)", "#020617", "#a3e635", "<circle cx='0' cy='0' r='30'/>"],
+                [5, "The Island of Doctor Moreau", "H.G. Wells", "Grumpiness", "The story of Doctor Moreau serves as a caution against the contagious nature of grumpiness.", "Wells' fevered story of a scientist trying to civilize beasts on a remote island slowly reveals how easily contempt for humanity becomes its own monstrous experiment. Grumpiness, like Moreau's project, has a way of escalating until you barely recognize what you've created. A bracing reminder to interrogate your bad moods before they remake you. (Source: The Novel Cure)", "#14532d", "#86efac", "<path d='M-20,20 L0,-20 L20,20 Z'/>"],
+                [5, "Fahrenheit 451", "Ray Bradbury", "Searching for happiness", "The relentless pursuit of happiness is an ailment, and must be cured.", "Bradbury's book-burning dystopia is full of people who insist they are perfectly happy — wired up to walls of entertainment, medicated, distracted, smiling. The novel argues that happiness pursued as the only goal becomes a sedative, and that real meaning lives in the inconvenient, often painful work of knowing. Read this when contentment starts to feel suspiciously thin. (Source: The Novel Cure)", "#7f1d1d", "#fca5a5", "<polygon points='0,-30 -15,10 15,10'/>"],
+                [5, "20,000 Leagues Under the Sea", "Jules Verne", "Hay fever", "Escape hay fever's woes by immersing yourself in Verne's underwater adventures with Captain Nemo.", "When pollen has turned the surface world into a sneezing tax, Captain Nemo and the Nautilus offer the perfect escape route: straight down, into a vast, alien, hypoallergenic ocean. Verne's lush undersea ecosystem is so vividly imagined that your body almost believes the air has changed. A reading prescription for sealed windows and red eyes. (Source: The Novel Cure)", "#1e3a8a", "#93c5fd", "<circle cx='0' cy='0' r='30' stroke-width='2'/>"],
+                [5, "The Stars My Destination", "Alfred Bester", "Being in a waiting room", "Gully Foyle survives a catastrophic event and learns the art of teleportation.", "Bester's Gully Foyle starts the novel marooned and forgotten, and ends it capable of teleporting across the galaxy through sheer act of will. The book is the perfect waiting-room antidote: it argues, with feral urgency, that stuckness is temporary and that the human imagination is itself a vehicle. Time slows. The page accelerates. (Source: The Novel Cure)", "#312e81", "#a78bfa", "<circle cx='0' cy='0' r='20'/><circle cx='0' cy='0' r='40' stroke-dasharray='4 8'/>"],
+                [5, "Brave New World", "Aldous Huxley", "Doing too many drugs", "Illustrates the plight of substance addiction.", "Huxley's chemically-managed utopia, where every citizen pops 'soma' the moment discomfort flickers, is one of literature's sharpest warnings about engineered escape. The horror isn't that the drug works — it's that it works so well that people forget they wanted anything else. A confronting mirror for anyone whose chemistry has started doing more of the living than they are. (Source: The Novel Cure)", "#0f172a", "#38bdf8", "<rect x='-20' y='-20' width='40' height='40' rx='4'/>"],
+                [5, "The Tin Drum", "Günter Grass", "Being short", "Celebrate short protagonists overcoming their stature through resilience and adventure.", "Oskar Matzerath, three feet tall by choice, refuses to grow up in protest against the adult world — and his outsized, glass-shattering scream becomes one of literature's most defiant declarations of presence. Grass turns small stature into a strategic vantage point on history itself. Proof that height has very little to do with how much room you take up. (Source: The Novel Cure)", "#422006", "#fbbf24", "<circle cx='0' cy='0' r='25'/>"],
+                [5, "The Hobbit", "J.R.R. Tolkien", "Being short", "Celebrate short protagonists overcoming their stature.", "Bilbo Baggins is unambitious, anxious, fond of breakfast, and barely four feet tall — and he ends up changing the fortune of an entire mountain kingdom. Tolkien makes a quiet, lifelong argument that the world's stories are not just shaped by giants and warriors but by small, decent people who keep saying yes one step at a time. A cosy, ferocious comfort. (Source: The Novel Cure)", "#064e3b", "#6ee7b7", "<path d='M-30,20 Q0,-20 30,20' fill='none' stroke-width='4'/>"],
+                [5, "The Crying of Lot 49", "Thomas Pynchon", "Paranoia", "Addresses themes of paranoia, urging readers to find themselves within its pages.", "Pynchon drops Oedipa Maas into an underground postal conspiracy that may or may not exist — and refuses, with magnificent stubbornness, to tell her (or you) the answer. The novel honours the texture of paranoid thinking: the meaningful coincidences, the patterns blooming everywhere, the certainty that something is being kept from you. It's both a confession and a containment vessel. (Source: The Novel Cure)", "#4c0519", "#fbcfe8", "<line x1='-20' y1='-20' x2='20' y2='20' stroke-width='4'/>"],
+                [5, "The Strange Case of Dr. Jekyll & Mr. Hyde", "R.L. Stevenson", "Fear of violence", "Delves into the inner struggle with violent impulses and the duality of human nature.", "Stevenson's classic isn't really about a potion — it's about the unsettling realisation that the capacity for violence lives, dormant and dignified, inside ordinary, even kindly people. Encountering Hyde on the page is a way of facing him at a safe distance. Helps reframe the fear of violence from external monster to internal weather we are all responsible for managing. (Source: The Novel Cure)", "#1c1917", "#fb923c", "<rect x='-15' y='-25' width='30' height='50' rx='15'/>"],
+                [5, "Of Mice and Men", "John Steinbeck", "Loss of hope", "Depicts how hope sustains people through difficult circumstances.", "George and Lennie's small dream of a farm with rabbits is so modest and so unreachable that it becomes painfully, transcendently universal. Steinbeck doesn't promise the dream will come true; he promises only that telling it, together, is what keeps people walking. Read this when hope feels frivolous — and let the book remind you it's actually a survival skill. (Source: The Novel Cure)", "#3f2c14", "#fcd34d", "<circle cx='0' cy='0' r='30' stroke-width='2'/>"],
+                [5, "The Metamorphosis", "Franz Kafka", "Identity crisis", "Gregor Samsa transforms into a cockroach, confronting the loss of humanity and identity.", "Gregor Samsa wakes up as a giant insect, but the real horror of Kafka's novella is that everyone around him handles it with depressing speed — his identity was always more disposable to them than he realised. The book gives clinical, almost serene attention to the experience of suddenly not recognising yourself, and being unrecognised in turn. A strangely consoling companion in moments of self-estrangement. (Source: The Novel Cure)", "#111827", "#a3e635", "<polygon points='-20,0 0,-30 20,0 0,30'/>"],
+                [5, "The Hearing Trumpet", "Leonora Carrington", "Going senile", "Depicts the adventures of a nonagenarian navigating life with humor and resilience.", "Carrington's 92-year-old heroine, equipped with a magnificent hearing trumpet, gets bundled into a sinister old folks' home — and proceeds to instigate a magical, slightly apocalyptic revolution. The novel insists that age is no excuse for the world to write you off, and that an unruly imagination is the best defense against being patronised. Riotous, sly, and oddly inspiring. (Source: The Novel Cure)", "#4a044e", "#f472b6", "<circle cx='0' cy='0' r='20' stroke-width='6'/>"],
+                [5, "The History of Mr. Polly", "H.G. Wells", "Feeling like a failure", "Mr. Polly's journey from despair to self-discovery emphasizes embracing failure as a learning experience.", "Mr. Polly, hemmed in by an awful marriage and a failing shop, eventually decides — with magnificent reasonableness — to burn it all down and walk away. Wells uses his small, ordinary life to argue something quietly radical: that what looks like failure is often just a misfit between you and the wrong life. Permission, in book form, to start over. (Source: The Novel Cure)", "#3f2c14", "#fcd34d", "<path d='M-20,10 Q0,-30 20,10' fill='none' stroke-width='4'/>"],
+                [5, "Life: A User's Manual", "Georges Perec", "Pointlessness", "Explores the idea of finding joy in life's seemingly pointless tasks.", "Perec maps a single Parisian apartment building one room at a time — every inhabitant, every object, every life folded into the walls — and slowly, almost imperceptibly, the trivial becomes monumental. The novel argues that 'pointlessness' is just a failure of attention. Spend enough time on anything and a point quietly assembles itself. (Source: The Novel Cure)", "#1e1b4b", "#a78bfa", "<rect x='-15' y='-15' width='30' height='30' rx='4'/>"],
+                [5, "The Wind-Up Bird Chronicle", "Haruki Murakami", "Unemployment", "Toru Okada leaves his legal career without a clear reason and navigates the aimlessness of his newfound freedom.", "Toru Okada quits his job, and instead of the usual frantic résumé blitz, he sits in dry wells, follows lost cats, dreams about strange women, and gradually realises that his old career was a way of not knowing himself. Murakami treats unemployment as a strange, fertile underworld in which something else can finally surface. A book for the long, slow afternoons between identities. (Source: The Novel Cure)", "#0f172a", "#38bdf8", "<circle cx='0' cy='0' r='25' fill='none' stroke-width='4'/>"],
+                [5, "1Q84", "Haruki Murakami", "Falling out of love with love", "This complex narrative reawakens the capacity for love amidst extraordinary circumstances and past connections.", "Aomame and Tengo, separated for twenty years by nothing more than a held hand in a fourth-grade classroom, navigate parallel realities, cults, and assassins to find each other again. Murakami stakes the entire universe's coherence on the proposition that one buried connection can keep pulling on you across decades. A massive, weird, deeply romantic argument for not giving up on love. (Source: The Novel Cure)", "#422006", "#fbbf24", "<path d='M-15,-15 L15,15 M-15,15 L15,-15' stroke-width='4'/>"],
+                [5, "Catch-22", "Joseph Heller", "Being a coward", "Examines concepts of fear and the nature of self-preservation.", "Yossarian doesn't want to die in a war that has gone completely mad, and Heller's brilliant insight is that this makes him not a coward but the only sane person in the room. The novel's relentless paradoxes — chiefly the title one — give philosophical dignity to the urge to opt out of stupid, lethal systems. Permission to be afraid of the right things. (Source: The Novel Cure)", "#7f1d1d", "#f87171", "<polygon points='-20,-20 20,0 -20,20'/>"],
+                [5, "The Remains of the Day", "Kazuo Ishiguro", "Procrastination", "Illustrates the dangers of procrastination and emotional avoidance through the character of Mr. Stevens.", "Stevens, the impeccable butler, has spent his entire adult life politely deferring every personal feeling in service of duty — and Ishiguro lets us watch, with devastating restraint, as the moment for love and dignity quietly closes behind him. The book is procrastination's most haunting cautionary tale: there is no later. Read this when 'I'll deal with it soon' has become a way of life. (Source: The Novel Cure)", "#1e293b", "#94a3b8", "<rect x='-20' y='-20' width='40' height='40'/>"],
+                [5, "Never Let Me Go", "Kazuo Ishiguro", "Blind optimism", "Ishiguro's novel depicts a harrowing reality that forces characters, and readers, to confront darker truths.", "Ishiguro's clones grow up at a gentle English boarding school being told, in the kindest possible language, the unthinkable thing that will happen to them — and they mostly try to believe in good outcomes anyway. The book exposes the soft cruelty of forced optimism, and asks what dignity actually looks like when the truth is no longer deniable. A heartbreak that arrives in whispers. (Source: The Novel Cure)", "#2e1065", "#d8b4fe", "<circle cx='0' cy='0' r='30' stroke-dasharray='2 6'/>"],
+                [5, "Blindness", "José Saramago", "Fear of commitment", "Shows the power of commitment amid chaos in relationships.", "Saramago's society goes blind, overnight and almost completely, and quickly devolves into the kind of horror in which only one thing keeps a small group of people human: their stubborn, terrifying commitment to each other. The book argues that real bonds are built precisely in the moments when bailing would be easier. Read this when the word 'committed' has started to feel like a trap. (Source: The Novel Cure)", "#064e3b", "#6ee7b7", "<line x1='-20' y1='20' x2='20' y2='-20' stroke-width='6'/>"],
+                [5, "The Road", "Cormac McCarthy", "Fatherhood", "Examines the emotional growth required in fatherhood through both a profound bond and a strained relationship.", "McCarthy's father walks his son across the ash of a dead America with nothing — no map, no destination, no reasonable hope — except the absolute conviction that the boy must live. Every other obligation, ideology, and self-image has been burned away. What's left is the irreducible core of what it means to be a parent. (Source: The Novel Cure)", "#1c1917", "#a8a29e", "<circle cx='0' cy='0' r='20'/>"],
+                [5, "I Am Legend", "Richard Matheson", "Coping without family", "Robert Neville's journey reflects resilience and the search for meaning after losing his family.", "Robert Neville may be the last unaltered human on earth, and Matheson lets us live, in unflinching detail, inside the daily rituals he invents to survive his own solitude. The novel takes the grief of being the last of your kind seriously, and shows how a self can be rebuilt around routine, purpose, and even the occasional drink. A surprisingly tender companion in seasons of absence. (Source: The Novel Cure)", "#422006", "#fbbf24", "<path d='M-20,0 L0,-20 L20,0 L0,20 Z'/>"],
+                [5, "Something Wicked This Way Comes", "Ray Bradbury", "Nameless dread", "Captures the feeling of nameless dread, employing a gripping narrative to transform fear into empowerment and resolve.", "Bradbury gives the formless midnight feeling a name, a carnival, and a Mr. Dark — and then sends two thirteen-year-old boys to face it on a small-town autumn night. By making dread concrete, the novel makes it confrontable; by writing about it in lush, almost incantatory prose, it makes the act of facing it feel beautiful. A spellbook against the 3 a.m. fear. (Source: The Novel Cure)", "#0f172a", "#38bdf8", "<circle cx='0' cy='0' r='25' fill='none' stroke-width='4'/>"],
+                [5, "Good Omens", "Neil Gaiman & Terry Pratchett", "Being in the hospital", "Whether desiring comfort or adventure during hospital stays, explore titles such as Good Omens.", "An angel and a demon — both very fond of London, jazz, and good wine — team up to delay the apocalypse because they like the world too much. Gaiman and Pratchett's joint affection for humanity radiates off every page, which is exactly what fluorescent ceilings and beeping monitors require. The perfect book to keep on the bedside cabinet during any kind of treatment. (Source: The Novel Cure)", "#312e81", "#38bdf8", "<path d='M-20,-20 Q0,20 20,-20' fill='none' stroke-width='4'/>"],
+                [5, "The Graveyard Book", "Neil Gaiman", "Adoption", "Addresses the complexities and emotional connections in adoption.", "Bod is raised by ghosts who chose him after his birth family was killed, and Gaiman writes their family — improvised, devoted, multispecies, eternal — as one of the most loving units in modern literature. The book quietly insists that the bond made by raising a child is at least as deep as the bond of having borne them. A gentle, beautiful map for chosen families. (Source: The Novel Cure)", "#0c4a6e", "#7dd3fc", "<line x1='-30' y1='0' x2='30' y2='0' stroke-width='2'/>"],
+                [5, "The Little Prince", "Antoine de Saint-Exupéry", "Carelessness", "Teaches the importance of care in life through profound lessons from small tasks.", "The fox in Saint-Exupéry's fable teaches the little prince a single, lifelong lesson: you become responsible, forever, for what you have tamed. The book is a soft but absolute argument against treating people, animals, or even small things as interchangeable. Read this when you suspect you've started moving too fast through your own life. (Source: The Novel Cure)", "#422006", "#fef08a", "<circle cx='0' cy='0' r='25'/>"],
+                [5, "White Noise", "Don DeLillo", "Fear of death", "An awareness of death is what sets us apart from animals.", "DeLillo's Jack Gladney is a Hitler-studies professor who is terrified, lucidly, brilliantly, of dying — and his fear leads him through supermarkets, suburban fog, and an experimental pharmacology that promises to dissolve the fear itself. The novel makes death the central plot point of ordinary life, and somehow turns it funny. Comfort by recognition. (Source: The Novel Cure)", "#020617", "#94a3b8", "<rect x='-20' y='-20' width='40' height='40' stroke-dasharray='4 4'/>"],
+                [5, "Do Androids Dream of Electric Sheep?", "Philip K. Dick", "Empathy exhaustion", "Examines the terrifying prospect of losing our humanity in an increasingly artificial world.", "Rick Deckard hunts androids who are almost indistinguishable from humans except for one missing trait — empathy — and slowly realises that his ability to feel for them might be the only thing keeping him from joining them. Dick's novel pressures the reader's own depleted compassion until something shifts. A diagnostic test, in book form, for a heart that has gone quiet. (Source: The Novel Cure)", "#7f1d1d", "#f87171", "<polygon points='0,30 -20,-20 20,-20'/>"]
+            ];
+
+            // Sanitize and map raw data
+            const sanitize = (s) => String(s)
+                .replace(/\[span_\d+\]/g, '')
+                .replace(/\u00A0/g, ' ')
+                .replace(/[\u2018\u2019]/g, "'")
+                .replace(/[\u201C\u201D]/g, '"')
+                .replace(/\s+/g, ' ')
+                .trim();
+
+            const books = rawData.map(b => ({
+                s: S[b[0]],
+                t: sanitize(b[1]),
+                a: sanitize(b[2]),
+                th: sanitize(b[3]),
+                ex: sanitize(b[4]),
+                br: sanitize(b[5]),
+                bg: b[6],
+                acc: b[7],
+                shp: b[8]
+            }));
+
+            const shelves = [
+                { name: "To Connect",   slug: "to-connect",   color: "#2563eb", tagline: "When you need to feel less alone in something hard." },
+                { name: "To Feel",      slug: "to-feel",      color: "#e11d48", tagline: "For when you need an emotion turned up — joy, awe, grief, or rage." },
+                { name: "To Escape",    slug: "to-escape",    color: "#7c3aed", tagline: "For when this world is too much and you need another one." },
+                { name: "To Know",      slug: "to-know",      color: "#059669", tagline: "For when your curiosity outgrows your phone's algorithm." },
+                { name: "To Reflect",   slug: "to-reflect",   color: "#d97706", tagline: "For when you need to sit with the bigger questions a little longer." },
+                { name: "Bibliotherapy",slug: "bibliotherapy",color: "#db2777", tagline: "30 literary prescriptions from The Novel Cure for very specific ailments." }
+            ];
+
+            return {
+                view: 'home',
+                activeShelf: '',
+                activeBook: null,
+                showWhyCard: true,
+                shareOpen: false,
+                shelves,
+                books,
+                totalBooks: books.length,
+
+                init() {
+                    try {
+                        if (localStorage.getItem('rti_whyDismissed') === '1') this.showWhyCard = false;
+                    } catch (e) { /* ignore storage errors */ }
+                },
+
+                get activeShelfColor() {
+                    const s = this.shelves.find(x => x.name === this.activeShelf);
+                    return s ? s.color : 'var(--primary)';
+                },
+                get activeShelfTagline() {
+                    const s = this.shelves.find(x => x.name === this.activeShelf);
+                    return s ? s.tagline : '';
+                },
+
+                slug(s) { return String(s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 40); },
+
+                selectShelf(shelf) {
+                    this.activeShelf = shelf;
+                    this.view = 'grid';
+                    window.scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' });
+                },
+                openBook(b) {
+                    this.activeBook = b;
+                    this.view = 'detail';
+                    window.scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' });
+                },
+                goHome() {
+                    this.view = 'home';
+                    this.activeShelf = '';
+                    window.scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' });
+                },
+                getBooks(shelf) { return this.books.filter(j => j.s === shelf); },
+
+                dismissWhyCard() {
+                    this.showWhyCard = false;
+                    try { localStorage.setItem('rti_whyDismissed', '1'); } catch (e) {}
+                },
+
+                // Build the cover as a raw SVG string (shared by DOM + canvas share card)
+                buildCoverSvg(b) {
+                    if (!b) return '';
+                    const title = b.t;
+                    const len = title.length;
+                    let fontSize = 22;
+                    if (len > 15) fontSize = 19;
+                    if (len > 24) fontSize = 16;
+                    if (len > 34) fontSize = 14;
+                    if (len > 44) fontSize = 12;
+
+                    // Smart wrap: split into two roughly-balanced lines on a space boundary
+                    let t1 = title, t2 = '';
+                    if (len > 15) {
+                        const target = Math.ceil(len / 2);
+                        let bestSpace = -1;
+                        for (let i = 0; i < title.length; i++) {
+                            if (title[i] === ' ' && (bestSpace === -1 || Math.abs(i - target) < Math.abs(bestSpace - target))) {
+                                bestSpace = i;
+                            }
+                        }
+                        if (bestSpace > 0) {
+                            t1 = title.slice(0, bestSpace);
+                            t2 = title.slice(bestSpace + 1);
+                        }
+                    }
+                    if (t1.length > 22) t1 = t1.slice(0, 21) + '…';
+                    if (t2.length > 22) t2 = t2.slice(0, 21) + '…';
+
+                    const author = (b.a || '').toUpperCase();
+                    const authorTrim = author.length > 30 ? author.slice(0, 29) + '…' : author;
+
+                    return `<svg viewBox="0 0 200 300" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="300" fill="${b.bg}"/><path d="M0,0 L200,300 M200,0 L0,300" stroke="#ffffff" stroke-width="0.5" opacity="0.08"/><path d="M16,16 L184,16 L184,284 L16,284 Z" fill="none" stroke="${b.acc}" stroke-width="0.6" opacity="0.5"/><g transform="translate(100, 160)" fill="none" stroke="${b.acc}" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">${b.shp}</g><text x="16" y="44" fill="#ffffff" font-family="Inter, Helvetica, Arial, sans-serif" font-weight="800" font-size="${fontSize}" letter-spacing="-0.4">${escapeXml(t1)}</text>${t2 ? `<text x="16" y="${44 + fontSize + 4}" fill="#ffffff" font-family="Inter, Helvetica, Arial, sans-serif" font-weight="800" font-size="${fontSize}" letter-spacing="-0.4">${escapeXml(t2)}</text>` : ''}<rect x="16" y="248" width="28" height="3" fill="${b.acc}"/><text x="16" y="270" fill="#e2e8f0" font-family="Inter, Helvetica, Arial, sans-serif" font-weight="600" font-size="9.5" letter-spacing="1.6">${escapeXml(authorTrim)}</text></svg>`;
+                },
+
+                // Dynamic cover renderer for the DOM (delegates to buildCoverSvg)
+                renderCover(b) { return this.buildCoverSvg(b); },
+
+                // ---- SHARE: Generate 1:1 Instagram-ready card ----
+                openShare() {
+                    this.shareOpen = true;
+                    this.$nextTick(() => this.drawShareCard());
+                },
+                closeShare() { this.shareOpen = false; },
+
+                loadCoverImage(svgString) {
+                    return new Promise((resolve, reject) => {
+                        const svgUrl = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svgString);
+                        const img = new Image();
+                        img.onload = () => resolve(img);
+                        img.onerror = reject;
+                        img.src = svgUrl;
+                    });
+                },
+
+                async drawShareCard() {
+                    const canvas = this.$refs.shareCanvas;
+                    if (!canvas || !this.activeBook) return;
+                    const ctx = canvas.getContext('2d');
+                    const W = canvas.width, H = canvas.height;
+                    const b = this.activeBook;
+
+                    // --- Background
+                    ctx.fillStyle = b.bg;
+                    ctx.fillRect(0, 0, W, H);
+
+                    // Subtle diagonal lines for texture
+                    ctx.strokeStyle = 'rgba(255,255,255,0.05)';
+                    ctx.lineWidth = 1.5;
+                    for (let i = -H; i < W + H; i += 28) {
+                        ctx.beginPath();
+                        ctx.moveTo(i, 0); ctx.lineTo(i + H, H); ctx.stroke();
+                    }
+
+                    // Top brand strip
+                    ctx.fillStyle = 'rgba(255,255,255,0.94)';
+                    ctx.font = '700 26px Inter, sans-serif';
+                    ctx.textBaseline = 'top';
+                    ctx.fillText('READ THIS IF //', 60, 60);
+                    ctx.font = '400 22px Inter, sans-serif';
+                    ctx.fillStyle = 'rgba(255,255,255,0.6)';
+                    ctx.fillText('an experiential syllabus', 60, 94);
+
+                    // Accent bar + shelf label
+                    ctx.fillStyle = b.acc;
+                    ctx.fillRect(60, 170, 60, 6);
+                    ctx.font = '700 20px Inter, sans-serif';
+                    ctx.fillText(b.s.toUpperCase() + '  ·  SHELF', 60, 190);
+
+                    // Reason heading — left column, leaves space for cover on right
+                    ctx.fillStyle = '#ffffff';
+                    const reason = b.th;
+                    const reasonSize = reason.length > 40 ? 48 : reason.length > 28 ? 56 : 68;
+                    ctx.font = `800 ${reasonSize}px "Playfair Display", Playfair, Georgia, serif`;
+                    wrapText(ctx, reason, 60, 250, 580, reasonSize * 1.1);
+
+                    // --- Book cover on the right (the real generated SVG cover)
+                    const coverX = 700, coverY = 110, coverW = 320, coverH = 480; // 2:3
+                    try {
+                        const svgString = this.buildCoverSvg(b);
+                        const coverImg = await this.loadCoverImage(svgString);
+                        // Drop shadow
+                        ctx.save();
+                        ctx.shadowColor = 'rgba(0,0,0,0.45)';
+                        ctx.shadowBlur = 36;
+                        ctx.shadowOffsetX = 0;
+                        ctx.shadowOffsetY = 14;
+                        // rounded clip
+                        roundRect(ctx, coverX, coverY, coverW, coverH, 12);
+                        ctx.fillStyle = b.bg;
+                        ctx.fill();
+                        ctx.restore();
+                        ctx.save();
+                        roundRect(ctx, coverX, coverY, coverW, coverH, 12);
+                        ctx.clip();
+                        ctx.drawImage(coverImg, coverX, coverY, coverW, coverH);
+                        ctx.restore();
+                    } catch (e) {
+                        // If cover fails to load, gracefully continue without it
+                        console.warn('Cover render skipped:', e);
+                    }
+
+                    // --- Book title + author block (lower middle, full width below reason)
+                    let yBook = 680;
+                    ctx.fillStyle = 'rgba(255,255,255,0.5)';
+                    ctx.font = '600 18px Inter, sans-serif';
+                    ctx.fillText('READ', 60, yBook);
+
+                    ctx.fillStyle = '#ffffff';
+                    ctx.font = '800 36px Inter, sans-serif';
+                    const titleY = yBook + 28;
+                    const titleLines = wrapText(ctx, b.t, 60, titleY, W - 120, 42, true, 2);
+
+                    ctx.fillStyle = 'rgba(255,255,255,0.75)';
+                    ctx.font = '500 22px Inter, sans-serif';
+                    ctx.fillText('by ' + b.a, 60, titleY + (titleLines || 1) * 42 + 2);
+
+                    // --- Bridge / Why it changes you — bottom card
+                    const bridgeBoxY = 858;
+                    ctx.fillStyle = 'rgba(255,255,255,0.10)';
+                    roundRect(ctx, 60, bridgeBoxY, W - 120, 130, 18);
+                    ctx.fill();
+                    ctx.fillStyle = b.acc;
+                    ctx.font = '700 16px Inter, sans-serif';
+                    ctx.fillText('WHY IT CHANGES YOU', 84, bridgeBoxY + 22);
+                    ctx.fillStyle = 'rgba(255,255,255,0.92)';
+                    ctx.font = '500 19px Inter, sans-serif';
+                    wrapText(ctx, b.br, 84, bridgeBoxY + 52, W - 168, 26, false, 3);
+
+                    // Footer
+                    ctx.fillStyle = 'rgba(255,255,255,0.5)';
+                    ctx.font = '500 18px Inter, sans-serif';
+                    ctx.fillText('@artificialidiot  ·  Read This If', 60, H - 40);
+                },
+
+                async downloadShare() {
+                    const canvas = this.$refs.shareCanvas;
+                    if (!canvas) return;
+                    // Re-draw to guarantee the latest cover is on the canvas before export
+                    await this.drawShareCard();
+                    const link = document.createElement('a');
+                    const name = this.activeBook ? this.slug(this.activeBook.th) || 'remedy' : 'remedy';
+                    link.download = `read-this-if-${name}.png`;
+                    link.href = canvas.toDataURL('image/png');
+                    link.click();
+                }
+            };
+        }
+
+        // Helpers (kept outside Alpine for clarity)
+        function escapeXml(unsafe) {
+            return String(unsafe).replace(/[<>&'"]/g, c => ({
+                '<':'&lt;','>':'&gt;','&':'&amp;',"'":'&apos;','"':'&quot;'
+            })[c]);
+        }
+        function wrapText(ctx, text, x, y, maxWidth, lineHeight, returnCount, maxLines) {
+            const words = String(text).split(' ');
+            let line = '';
+            let lines = 0;
+            const cap = maxLines || 99;
+            for (let i = 0; i < words.length; i++) {
+                const test = line + words[i] + ' ';
+                if (ctx.measureText(test).width > maxWidth && i > 0) {
+                    if (lines >= cap - 1) {
+                        // ellipsis on final line
+                        while (ctx.measureText(line + '…').width > maxWidth && line.length > 0) {
+                            line = line.slice(0, -1);
+                        }
+                        ctx.fillText(line.trimEnd() + '…', x, y);
+                        lines++;
+                        return returnCount ? lines : undefined;
+                    }
+                    ctx.fillText(line.trimEnd(), x, y);
+                    line = words[i] + ' ';
+                    y += lineHeight;
+                    lines++;
+                } else {
+                    line = test;
+                }
+            }
+            if (line.trim().length) { ctx.fillText(line.trimEnd(), x, y); lines++; }
+            return returnCount ? lines : undefined;
+        }
+        function roundRect(ctx, x, y, w, h, r) {
+            ctx.beginPath();
+            ctx.moveTo(x + r, y);
+            ctx.arcTo(x + w, y,     x + w, y + h, r);
+            ctx.arcTo(x + w, y + h, x,     y + h, r);
+            ctx.arcTo(x,     y + h, x,     y,     r);
+            ctx.arcTo(x,     y,     x + w, y,     r);
+            ctx.closePath();
+        }
+    </script>
+</body>
+</html>
